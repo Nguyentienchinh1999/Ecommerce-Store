@@ -1,0 +1,31 @@
+{
+  "name": "ecommerce-store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nguyentienchinh1999/Ecommerce-Store.git"
+  },
+  "keywords": [
+    "Ecommer-Store",
+    "Ecommerce",
+    "phone"
+  ],
+  "author": "Mr.Chinh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nguyentienchinh1999/Ecommerce-Store/issues"
+  },
+  "homepage": "https://github.com/Nguyentienchinh1999/Ecommerce-Store#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
