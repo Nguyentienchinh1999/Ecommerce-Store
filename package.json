@@ -2,9 +2,10 @@
   "name": "ecommerce-store",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --inspect src/index.js",
+    "watch": "sass src/resources/scss/app.scss src/public/css/app.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,9 +24,23 @@
   },
   "homepage": "https://github.com/Nguyentienchinh1999/Ecommerce-Store#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.2",
+    "express-handlebars": "^5.3.5",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.1.4",
+    "mongoose-delete": "^0.5.4",
+    "mongoose-sequence": "^5.3.1",
+    "mongoose-slug-generator": "^1.0.4",
+    "multer": "^1.4.4",
+    "sass": "^1.45.2"
   },
   "devDependencies": {
+    "node-sass": "^7.0.1",
     "nodemon": "^2.0.15"
   }
 }

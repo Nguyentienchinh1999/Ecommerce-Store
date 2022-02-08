@@ -1,0 +1,141 @@
+<form class="container" name="container-form" method="POST" action="/product/handle-form-action">
+    <h3>Quản lý sản phẩm</h3>
+    <a href="/admin/trash">Thùng rác ({{deletedCount}})</a>
+    <div class="row" style="display:flex;margin-left: 8px;">
+        <div class="">
+            <label>
+                <input type="checkbox" value="" id="checkbox-all">
+            </label>
+        </div>
+        <div class="form-group" style="margin-left: 15px;">
+            <select class="form-control form-control-sm" name="action" required>
+                <option value="">--Select Option</option>
+                <option value="delete">Xóa</option>
+            </select>
+        </div>
+        <button class="btn btn-primary btn-sm check-all-submit-btn" disabled="disabled" style="margin-left: 15px;">Thực
+            hiện</button>
+    </div>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantily</th>
+                <th>Status</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each product}}
+            <tr>
+                <td>
+                    <div class="">
+                        <label>
+                            <input type="checkbox" name="projectIds[]" value="{{this._id}}">
+                        </label>
+                    </div>
+                </td>
+                <th>{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.price}}</td>
+                <th></th>
+                <th></th>
+                <th>{{this.createdAt}}</th>
+                <th>{{this.updatedAt}}</th>
+                <th>
+                    <a href="/product/{{this._id}}/edit" class="btn">Edit</a>
+                </th>
+                <th><a href="" data-target="#delete-product" class="btn" data-toggle="modal"
+                        data-id="{{this._id}}">Delete</a></th>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="5">
+                    <h4> Bạn chưa có sản phẩm nào</h4>
+                    <a href="/product/create">Đăng sản phẩm</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</form>
+
+{{!-- confirm delete --}}
+<div class="modal fade" id="delete-product" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Xóa Sản Phẩm</h4>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa sản phẩm ?
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-product" type="button" class="btn btn-danger">Xóa</button>
+                <button type="button" class="btn btn-secondery" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- delete form --}}
+<form method="POST" name="delete-form"></form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var containerForm = $('form[name="container-form"]')
+        var btnDeleteProduct = document.getElementById("btn-delete-product")
+        var deleteForm = document.forms['delete-form']
+        var productId
+        var checkboxAll = $('#checkbox-all')
+        var projectItemCheckbox = $('input[name="projectIds[]"]')
+        var checkAllSubmitBtn = $('.check-all-submit-btn')
+
+        // khi click confirm delete để bắt được id
+        $('#delete-product').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            productId = button.data('id')
+
+        })
+        btnDeleteProduct.onclick = function () {
+            deleteForm.action = '/product/' + productId + '?_method=DELETE'
+            deleteForm.submit()
+        }
+        // checkbox all change
+        checkboxAll.change(function (event) {
+            var isChecked = $(this).prop('checked')
+            projectItemCheckbox.prop('checked', isChecked)
+            renderCheckAllSubmitBtn()
+        })
+
+        // project item checkbox change
+        projectItemCheckbox.change(function (event) {
+            var isCheckedAll = projectItemCheckbox.length === $('input[name="projectIds[]"]:checked').length
+            checkboxAll.prop('checked', isCheckedAll)
+            renderCheckAllSubmitBtn()
+        })
+
+        //checked all submit btn click
+
+
+        // render lại check all submit  button
+        function renderCheckAllSubmitBtn() {
+            var checkedCount = $('input[name="projectIds[]"]:checked').length
+            if (checkedCount > 0) {
+                checkAllSubmitBtn.attr('disabled', false)
+            } else {
+                checkAllSubmitBtn.attr('disabled', true)
+            }
+        }
+
+    })
+
+</script>

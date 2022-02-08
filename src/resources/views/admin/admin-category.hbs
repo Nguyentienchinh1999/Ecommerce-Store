@@ -1,0 +1,90 @@
+<form class="container" name="container-form" method="POST" action="/category/handle-form-action">
+    <h3>Quản lý danh mục sản phẩm</h3>
+
+
+    <table class="table">
+
+        <thead>
+            <tr>
+
+                <th>ID</th>
+                <th>Name</th>
+                <th>Icon</th>
+
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each category}}
+            <tr>
+
+                <th>{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.icon}}</td>
+
+                <th>{{this.createdAt}}</th>
+                <th>{{this.updatedAt}}</th>
+                <th>
+                    <a href="/category/{{this._id}}/edit" class="btn">Edit</a>
+                </th>
+                <th><a href="" data-target="#delete-category" class="btn" data-toggle="modal"
+                        data-id="{{this._id}}">Delete</a></th>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="5">
+                    <h4> Bạn chưa có danh mục sản phẩm nào</h4>
+                    <a href="/category/create">Đăng danh mục sản phẩm</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</form>
+
+{{!-- confirm delete --}}
+<div class="modal fade" id="delete-category" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Xóa danh mục sản phẩm</h4>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa danh mục này?
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-category" type="button" class="btn btn-danger">Xóa</button>
+                <button type="button" class="btn btn-secondery" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- delete form --}}
+<form method="POST" name="delete-form"></form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var containerForm = $('form[name="container-form"]')
+        var btnDeleteProduct = document.getElementById("btn-delete-category")
+        var deleteForm = document.forms['delete-form']
+        var categoryId
+        // khi click confirm delete để bắt được id
+        $('#delete-category').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            categoryId = button.data('id')
+
+        })
+        btnDeleteProduct.onclick = function () {
+            deleteForm.action = '/category/' + categoryId + '/delete?_method=DELETE'
+            deleteForm.submit()
+        }
+
+
+    })
+
+</script>

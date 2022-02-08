@@ -1,0 +1,125 @@
+<div class="header-area">
+    <div class="container">
+        <div class="row">
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            {{#if account}}
+                           
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false"> Account {{username}}
+                                    <spanp class="caret"></spanp>
+                                </a>
+                                {{!-- <ul class="dropdown-menu">
+                                    <li><a href="/product/create">Thêm sản phẩm</a></li>
+                                    <li><a href="/category/create">Thêm danh mục sản phẩm</a></li>
+                                    <li><a href="/admin">Quản lý sản phẩm</a></li>
+                                    <li><a href="/admin/category">Quản lý danh mục sản phẩm</a></li>                           
+                                    <li><a id="btn-logout" href="/logout">Đăng xuất</a></li>
+                                </ul> --}}
+                                {{#iff role 'admin'}}
+                                  <ul class="dropdown-menu">
+                                    <li><a href="/product/create">Thêm sản phẩm</a></li>
+                                    <li><a href="/category/create">Thêm danh mục sản phẩm</a></li>
+                                    <li><a href="/admin">Quản lý sản phẩm</a></li>
+                                    <li><a href="/admin/category">Quản lý danh mục sản phẩm</a></li>                           
+                                    <li><a id="btn-logout" href="/logout">Đăng xuất</a></li>
+                                </ul>
+                                {{else}}
+                                    <ul class="dropdown-menu">
+                                    <li><a href="/logout">Đăng xuất</a></li>
+                                </ul>
+                                {{/iff}}
+                            </li>
+                          
+                              
+                              
+                            {{else}}
+                            <li><a href="/register">Đăng ký</a></li>
+                            <li><a href="/login">Đăng nhập</a></li>
+                            {{/if}}
+
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+        </div>
+    </div>
+</div>
+</div> <!-- End header area -->
+
+<div class="site-branding-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="logo">
+                    <h1><a href="./"><img src="/img/logo.png"></a></h1>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                {{!-- <div class="shopping-item">
+                    <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i>
+                        <span class="product-count">5</span></a>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+</div> <!-- End site branding area -->
+
+<div class="mainmenu-area">
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/product">Product</a></li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">Category<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            {{#each category}}
+                            <li><a href="/category/{{this._id}}">{{this.name}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                    <li><a href="/cart">Cart</a></li>
+                    <li><a href="/check-out">Checkout</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> <!-- End mainmenu area -->
+
+<form method="POST" action="/login"></form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var btnLogout = document.getElementById('btn-logout')
+    })
+</script>
