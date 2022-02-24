@@ -10,10 +10,17 @@ class DetailController {
             .then(product => {
                 res.render('detail-product', {
                     product
+
                 })
             })
             .catch(next)
+        Product.find({}).lean().then(product => {
+            res.locals.product = product;
+            res.locals.productName = product.name
+            res.locals.productImage = product.image
+        })
     }
+
 }
 
 module.exports = new DetailController

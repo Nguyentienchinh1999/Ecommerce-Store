@@ -1,6 +1,7 @@
 <form class="container" name="container-form" method="POST" action="/product/handle-form-action">
     <h3>Quản lý sản phẩm</h3>
     <a href="/admin/trash">Thùng rác ({{deletedCount}})</a>
+    <i class="glyphicon glyphicon-trash"></i>
     <div class="row" style="display:flex;margin-left: 8px;">
         <div class="">
             <label>
@@ -20,14 +21,28 @@
 
         <thead>
             <tr>
-                <th></th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantily</th>
-                <th>Status</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
+                <td></td>
+                <th style="width:50px">ID
+                    {{{sortable '_id' _sort }}}
+                </th>
+                <th style="width:140px">Tên Sản phẩm
+                    {{{sortable 'name' _sort }}}
+                </th>
+                <th style="width:140px">Giá Sản Phẩm
+                    {{{sortable 'price' _sort }}}
+                </th>
+                <th style="width:90px">Số Lượng
+
+                </th>
+                <th style="width:90px">Trạng thái
+
+                </th>
+                <th>Thời gian tạo
+                    {{{sortable 'CreatedAt' _sort }}}
+                </th>
+                <th>Thời gian cập nhật
+                    {{{sortable 'UpdatedAt' _sort }}}
+                </th>
                 <th colspan="2"></th>
             </tr>
         </thead>
@@ -49,10 +64,11 @@
                 <th>{{this.createdAt}}</th>
                 <th>{{this.updatedAt}}</th>
                 <th>
-                    <a href="/product/{{this._id}}/edit" class="btn">Edit</a>
+                    <a href="/product/{{this._id}}/edit" class="btn">Chỉnh sửa <i
+                            class="glyphicon glyphicon-edit"></i></a>
                 </th>
-                <th><a href="" data-target="#delete-product" class="btn" data-toggle="modal"
-                        data-id="{{this._id}}">Delete</a></th>
+                <th><a href="" data-target="#delete-product" class="btn" data-toggle="modal" data-id="{{this._id}}">Xóa
+                        <i class="glyphicon glyphicon-trash"></i></a></th>
             </tr>
             {{else}}
             <tr>

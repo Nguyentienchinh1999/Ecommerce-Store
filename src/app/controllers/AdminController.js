@@ -5,6 +5,12 @@ class AdminController {
     admin(req, res, next) {
         let productQuery = Product.find({}).lean()
 
+        if (req.query.hasOwnProperty('_sort')) {
+            productQuery = productQuery.sort({
+                [req.query.column]: req.query.type
+            })
+        }
+
         Promise.all([productQuery, Product.countDocumentsDeleted()])
             .then(([product, deletedCount]) =>
                 res.render('admin/admin-product', {

@@ -1,10 +1,9 @@
 const Category = require('../models/Category')
-function categoryLocals(req, res, next) {
+module.exports = function categoryLocals(req, res, next) {
     Category.find({}).lean()
         .then(category => {
-           res.locals.category = category
+            res.locals.category = category
+            res.locals.session = req.session
             next()
         }).catch(next)
-        
 }
-module.exports = categoryLocals

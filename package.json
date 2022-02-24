@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Nguyentienchinh1999/Ecommerce-Store#readme",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
+    "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.6",
     "express": "^4.17.2",
     "express-handlebars": "^5.3.5",

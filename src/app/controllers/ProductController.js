@@ -35,27 +35,37 @@ class ProductController {
 
     // POST product
     store(req, res, next) {
-        // req.body.image = req.file.path.split(path.sep).slice(1).join('/')
         req.body.image = req.file.path.split(path.sep).slice(2).join('/')
         const product = new Product(req.body)
         product.save()
             .then(() =>
                 res.redirect('/admin')
-            
             )
             .catch(next)
     }
 
     // GET     edit      /product/:id/edit
     edit(req, res, next) {
-        Product.findById(req.params.id)
-            .lean()
-            .then(product => res.render('product/edit', { product }))
+        let productQuery = Product.findById(req.params.id).lean()
+        let categoryQuery = Category.find({}).lean()
+        Promise.all([productQuery, categoryQuery])
+            .then(([product, category]) =>
+                res.render('product/edit', {
+                    product,
+                    category
+                }
+                ))
             .catch(next)
+
+        // Product.findById(req.params.id)
+        //     .lean()
+        //     .then(product => res.render('product/edit', { product }))
+        //     .catch(next)
     }
 
     // PUT  /product/:id
     update(req, res, next) {
+        req.body.image = req.file.path.split(path.sep).slice(2).join('/')
         Product.updateOne({ _id: req.params.id }, req.body)
             .then(() => res.redirect('/admin'))
             .catch(next)
@@ -109,7 +119,7 @@ class ProductController {
                     .then(() => res.redirect('back'))
                     .catch(next)
                 break;
-            default: res.json({ message: 'ACtion is invalid' })
+            default: res.json({ message: 'Action is invalid' })
         }
     }
 

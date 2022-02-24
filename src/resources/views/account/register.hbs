@@ -6,7 +6,7 @@
         <div class="spacer"></div>
 
         <div class="form-group">
-            <label for="fullname" class="form-label">Tên đầy đủ</label>
+            <label for="fullname" class="form-label">Tên hiển thị</label>
             <input id="fullname" name="username" type="text" placeholder="VD: Chính Nguyễn" class="form-control">
             <span class="form-message" name=""></span>
 
@@ -15,12 +15,12 @@
         <div class="form-group">
             <label for="email" class="form-label">Email</label>
             <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control">
-             {{#if error}}
-             <span class="form-message" style="color:#f33a58">{{error}}</span>
-             {{else}}   
+            {{#if error}}
+            <span class="form-message" style="color:#f33a58">{{error}}</span>
+            {{else}}
             {{/if}}
             <span class="form-message" name=""></span>
-           
+
         </div>
 
         <div class="form-group">

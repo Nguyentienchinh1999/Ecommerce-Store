@@ -22,7 +22,7 @@ class AccountController {
                 .catch(next)
 
         } catch (error) {
-             res.render('account/register')
+            res.render('account/register')
         }
     }
 
@@ -36,7 +36,7 @@ class AccountController {
                 .then(account => {
                     if (account) {
                         res.render('home')
-                       
+
                     } else {
                         res.json('bạn k có quyền truy cập')
                     }
@@ -44,33 +44,37 @@ class AccountController {
                 .catch(next)
 
         } catch (error) {
-             res.render('account/login') 
-         
+            res.render('account/login')
+
         }
     }
 
-     Registerstore(req, res, next) {
+    Registerstore(req, res, next) {
 
         var username = req.body.username
         var password = req.body.password
         var email = req.body.email
-         Account.findOne({
+        Account.findOne({
             email: email
         })
             .then(account => {
                 if (account) {
                     var error = 'Email đã có người sử dụng, vui lòng nhập email khác'
-                      res.render('account/register', {error})
+                    res.render('account/register', { error })
                 } else {
-                        Account.create({
+                    Account.create({
                         username: username,
                         password: password,
                         email: email
                     })
-                    res.json('Bạn đã đky thành công')
+                    res.redirect('register/success')
                 }
             })
             .catch(next)
+    }
+
+    registerSuccess(req, res, next) {
+        res.render('account/register-success')
     }
 
     loginStore(req, res, next) {
@@ -91,10 +95,10 @@ class AccountController {
                 // }
                 // tokenList[refreshToken] = response
                 res.cookie('token', token, { maxAge: 9000000 })
-                res.redirect('/')
+                res.redirect('back')
             } else {
                 var error = 'Tên đăng nhập hoặc mật khẩu sai'
-               res.render('account/login', {error})
+                res.render('account/login', { error })
             }
         })
             .catch(next)

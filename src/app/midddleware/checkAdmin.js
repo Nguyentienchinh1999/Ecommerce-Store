@@ -6,6 +6,6 @@ module.exports = function checkAdmin(req, res, next) {
     if (role === 'admin') {
         next()
     } else (
-        res.json('bạn k có quyền truy cập')
+        res.render('account/warning')
     )
 }

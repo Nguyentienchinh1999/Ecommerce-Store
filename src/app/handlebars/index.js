@@ -1,11 +1,11 @@
 const handlebars = require('express-handlebars')
 const Handlebars = require('handlebars');
 var hbs = handlebars.create()
-Handlebars.registerHelper('iff', function(arg1, arg2, options) {
+Handlebars.registerHelper('iff', function (arg1, arg2, options) {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
 function handlebar(app) {
-    
+
     app.engine('hbs', handlebars({
         extname: '.hbs',
         helpers: {
@@ -13,9 +13,9 @@ function handlebar(app) {
             sortable: (field, sort) => {
                 const sortType = field === sort.column ? sort.type : 'default';
                 const icons = {
-                    default: 'oi oi-elevator',
-                    asc: 'oi oi-sort-ascending',
-                    desc: 'oi oi-sort-descending'
+                    default: 'glyphicon glyphicon-sort',
+                    asc: 'glyphicon glyphicon-sort-by-alphabet',
+                    desc: 'glyphicon glyphicon-sort-by-alphabet-alt'
                 }
                 const types = {
                     default: 'desc',

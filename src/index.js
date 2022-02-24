@@ -1,32 +1,32 @@
 const express = require('express')
+const mongoose = require('mongoose');
 const handlebars = require('./app/handlebars')
 const path = require('path')
 const app = express()
 const port = 8080
 const route = require('./routes')
-const categoryLocals = require('./app/midddleware/categoryLocals')
 const db = require('./config/db')
 const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
-const getAccount = require('./app/midddleware/getAccount')
-// const SortMidddleware = require('./app/midddleware/SortMidddleware')
+const MongoStore = require('connect-mongo')(session)
+const SortMidddleware = require('./app/midddleware/SortMidddleware')
 
 //  override method PUT or DELETE
 app.use(methodOverride('_method'));
 
 // custom Middleware
-// app.use(SortMidddleware)
+app.use(SortMidddleware)
 
 app.use(express.static(path.join(__dirname, 'public')))
 handlebars(app)
 
-app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     secret: 'chinh',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 86400000 }
 }))
 
 app.set('view engine', 'hbs');

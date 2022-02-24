@@ -22,11 +22,11 @@
             <tr>
                 <th></th>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantily</th>
-                <th>Status</th>
-                <th>DeletedAt</th>
+                <th>Tên Sản phẩm</th>
+                <th>Giá Sản Phẩm</th>
+                <th>Số Lượng</th>
+                <th>Trạng Thái</th>
+                <th>Thời Gian Xóa</th>
                 <th colspan="2"></th>
             </tr>
         </thead>
@@ -48,10 +48,11 @@
                 <td></td>
 
                 <th>
-                    <a href="" class="btn btn-restore" data-id="{{this._id}}">Khôi phục</a>
+                    <a href="" class="btn btn-restore" data-id="{{this._id}}">Khôi phục <i
+                            class="glyphicon glyphicon-repeat"></i></a>
                 </th>
                 <th><a href="" data-target="#delete-product" class="btn" data-toggle="modal"
-                        data-id="{{this._id}}">Delete</a></th>
+                        data-id="{{this._id}}">Delete <i class="glyphicon glyphicon-trash"></i></a></th>
             </tr>
             {{else}}
             <tr>

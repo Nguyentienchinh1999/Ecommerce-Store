@@ -9,7 +9,7 @@ const Product = new Schema({
     name: { type: String, require: true },
     description: { type: String, maxLength: 6000 },
     image: { type: String, },
-    price: { type: String, maxLength: 255 },
+    price: { type: Number, maxLength: 255 },
     id_category: { type: String, },
     slug: { type: String, slug: "name", unique: true }
 

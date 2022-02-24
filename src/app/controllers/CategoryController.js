@@ -1,12 +1,12 @@
 const Category = require('../models/Category')
 const Product = require('../models/Product')
-
+const path = require('path');
 class CategoryController {
     index(req, res, next) {
         Product.find({ id_category: req.params.id }).lean()
-            .then(product =>
-                Category.find({}).lean().
-                    then(category => res.render('category/detail-category', { product, category })))
+            .then(product => {
+                res.render('category/detail-category', { product })
+            })
 
     }
 
@@ -15,6 +15,7 @@ class CategoryController {
     }
 
     store(req, res, next) {
+        req.body.icon = req.file.path.split(path.sep).slice(2).join('/')
         const category = new Category(req.body)
         category.save()
             .then(() => res.redirect('/admin/category'))
@@ -31,6 +32,7 @@ class CategoryController {
 
     //POST update
     update(req, res, next) {
+        req.body.icon = req.file.path.split(path.sep).slice(2).join('/')
         Category.updateOne({ _id: req.params.id }, req.body)
             .then(() => res.redirect('/admin/category'))
             .catch(next)

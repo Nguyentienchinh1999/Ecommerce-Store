@@ -17,20 +17,22 @@
         <div class="row">
             {{#each product}}
             <div class="col-md-3 col-sm-6">
-                <div class="single-shop-product">
-                    <div class="product-upper">
-                        <img src="/{{this.image}}" alt="">
-                    </div>
-                    <h2><a href="">{{this.name}}</a></h2>
-                    <div class="product-carousel-price">
-                        <ins>{{this.price}}</ins> <del>$999.00</del>
-                    </div>
+                <a href="/detail-product/{{this.slug}}">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="/{{this.image}}" alt="">
+                        </div>
+                        <h2><a href="">{{this.name}}</a></h2>
+                        <div class="product-carousel-price">
+                            <ins>{{this.price}}</ins>
+                        </div>
 
-                    <div class="product-option-shop">
-                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70"
-                            rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70"
+                                rel="nofollow" href="/cart/add-to-cart/{{this._id}}">Add to cart</a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             {{/each}}
         </div>

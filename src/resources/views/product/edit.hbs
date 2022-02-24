@@ -1,28 +1,30 @@
-<form class="container lead" role="form" method="POST" action="/product/{{product._id}}?method=PUT">
+<form class="container lead" role="form" method="POST" action="/product/{{product._id}}?method=PUT"
+    enctype="multipart/form-data">
     <h2>Sửa Thông Tin</h2>
     <div class="form-group">
-        <label for="exampleInputEmail1">Name</label>
+        <label for="exampleInputEmail1">Tên Sản Phẩm</label>
         <input type="text" class="form-control" value="{{product.name}}" id="name" name="name">
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Price</label>
-        <input type="text" class="form-control" value="{{product.price}}" id="price" price="price">
+        <label for="exampleInputEmail1">Giá Sản Phẩm</label>
+        <input type="text" class="form-control" value="{{product.price}}" id="price" name="price">
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Image</label>
-        <input type="text" class="form-control" value="{{product.image}}" id="image" name="image">
+        <label for="exampleInputFile">Hình Ảnh</label>
+        <input type="file" id="exampleInputFile" name="image" value="{{product.image}}">
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Descreption</label>
+        <label for="exampleInputEmail1">Mô tả</label>
         <textarea type="text" class="form-control" id="description"
             name="description">{{product.description}}</textarea>
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Category</label>
+        <label for="exampleInputEmail1">Danh Mục Sản Phẩm</label>
         <select class="form-control" name="id_category" required>
-            <option value="">--Select Category</option>
-            <option value="1">Samsung</option>
-            <option value="2">Iphone</option>
+            <option value="">--Chọn Danh Mục</option>
+            {{#each category}}
+            <option value="{{this._id}}">{{this.name}}</option>
+            {{/each}}
         </select>
     </div>
     {{!-- <div class="form-group">
@@ -30,5 +32,5 @@
         <input type="file" id="exampleInputFile">
         <p class="help-block">Example block-level help text here.</p>
     </div> --}}
-    <button type="submit" class="btn btn-default">Create</button>
+    <button type="submit" class="btn btn-default">Lưu Thông Tin</button>
 </form>

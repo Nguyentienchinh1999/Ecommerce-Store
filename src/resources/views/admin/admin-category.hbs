@@ -7,12 +7,12 @@
         <thead>
             <tr>
 
-                <th>ID</th>
-                <th>Name</th>
+                <th></th>
+                <th style="width:120px">Tên Sản Phẩm</th>
                 <th>Icon</th>
 
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
+                <th>Ngày Tạo</th>
+                <th>Ngày Cập Nhật</th>
                 <th colspan="2"></th>
             </tr>
         </thead>
@@ -22,15 +22,16 @@
 
                 <th>{{sum @index 1}}</th>
                 <td>{{this.name}}</td>
-                <td>{{this.icon}}</td>
+                <td><img style="width:20px" src="/{{this.icon}}" alt=""></td>
 
                 <th>{{this.createdAt}}</th>
                 <th>{{this.updatedAt}}</th>
                 <th>
-                    <a href="/category/{{this._id}}/edit" class="btn">Edit</a>
+                    <a href="/category/{{this._id}}/edit" class="btn">Chỉnh Sửa <i
+                            class="glyphicon glyphicon-edit"></i></a>
                 </th>
-                <th><a href="" data-target="#delete-category" class="btn" data-toggle="modal"
-                        data-id="{{this._id}}">Delete</a></th>
+                <th><a href="" data-target="#delete-category" class="btn" data-toggle="modal" data-id="{{this._id}}">Xóa
+                        <i class="glyphicon glyphicon-trash"></i></a></th>
             </tr>
             {{else}}
             <tr>
