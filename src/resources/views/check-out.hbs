@@ -134,7 +134,7 @@
                                             <td>{{this.item.name}}</td>
                                             <td class="product-thumbnail"><img src="{{this.item.image}}" alt=""></td>
                                             <td>{{this.qty}}</td>
-                                            <td><span class="amount">{{this.item.price}}</span>
+                                            <td><span class="amount vnd">{{this.item.price}}</span>
                                             </td>
                                         </tr>
                                         {{/each}}
@@ -142,7 +142,7 @@
 
                                     </tfoot>
                                 </table>
-                                <h4>Thành Tiền: {{totalPrice}}</h4>
+                                <h4>Thành Tiền: <span class="vnd">{{totalPrice}}</span></h4>
                                 {{/if}}
 
                                 <div id="payment">

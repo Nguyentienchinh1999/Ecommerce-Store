@@ -51,7 +51,7 @@
                                         </td>
 
                                         <td class="product-price">
-                                            <span class="amount">{{this.item.price}}</span>
+                                            <span class="amount vnd">{{this.item.price}}</span>
                                         </td>
 
                                         <td class="product-quantity">
@@ -59,14 +59,14 @@
                                         </td>
 
                                         <td class="product-subtotal">
-                                            <span class="amount">{{this.price}}</span>
+                                            <span class="amount vnd">{{this.price}}</span>
 
                                         </td>
                                         {{/each}}
                                     </tr>
                                 </tbody>
                             </table>
-                            <h4>Thành Tiền: {{totalPrice}}</h4>
+                            <h4>Thành Tiền: <span class="vnd">{{totalPrice}}</span></h4>
                             {{!-- <a class="add_to_cart_button" href="/check-out">Thanh Toán</a> --}}
                             <!-- Button trigger modal -->
                             {{#if account}}

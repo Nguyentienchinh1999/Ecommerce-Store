@@ -1,1 +1,38 @@
-<h2>Thông tin đơn hàng</h2>
+<div class="container">
+    <h1 style="">Thông tin đơn hàng</h3>
+        {{# each order}}
+        <h4>Thời gian: <span class="format-date">{{this.createdAt}}</span></h4>
+        <table class="shop_table">
+            <thead>
+                <tr>
+                    <th class="product-name">Sản Phẩm</th>
+                    <th class="product-name">Hình Ảnh</th>
+                    <th class="product-name">Số Lượng</th>
+                    <th class="product-total">Giá</th>
+                </tr>
+            </thead>
+            <tfoot>
+                {{#each this.items}}
+                <tr class="cart-subtotal">
+                    <td>{{this.item.name}}</td>
+                    <td class="product-thumbnail"><img src="{{this.item.image}}" alt=""></td>
+                    <td>{{this.qty}}</td>
+                    <td><span class="amount vnd">{{this.item.price}}</span>
+                    </td>
+                </tr>
+                {{/each}}
+                <tr>
+                    <td>Tổng giá</td>
+                    <td class="totalVnd" colspan="3">{{this.totalPrice}}</td>
+                </tr>
+            </tfoot>
+        </table>
+        {{else}}
+        <h3>Không có đơn hàng nào được thanh toán</h2>
+            {{/each}}
+</div>
+
+
+<script>
+
+</script>

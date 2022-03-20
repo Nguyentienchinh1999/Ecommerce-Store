@@ -39,6 +39,7 @@ class CategoryController {
 
     }
 
+    // DELETE
     delete(req, res, next) {
         Category.deleteOne({ _id: req.params.id })
             .then(() => res.redirect('back'))

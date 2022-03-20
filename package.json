@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/Nguyentienchinh1999/Ecommerce-Store#readme",
   "dependencies": {
-    "@handlebars/allow-prototype-access": "^1.0.5",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.6",
     "express": "^4.17.2",
@@ -33,6 +32,7 @@
     "handlebars": "^4.7.7",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
+    "moment-timezone": "^0.5.34",
     "mongoose": "^6.1.4",
     "mongoose-delete": "^0.5.4",
     "mongoose-sequence": "^5.3.1",

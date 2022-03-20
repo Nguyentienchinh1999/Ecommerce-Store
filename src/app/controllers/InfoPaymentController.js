@@ -1,12 +1,28 @@
-const CheckOut = require('../models/CheckOut')
+const Orders = require('../models/Orders')
+const Cart = require('../models/Cart')
 const jwt = require('jsonwebtoken');
+const moment = require('moment-timezone');
 class InfoPaymentController {
     // GET 
     index(req, res, next) {
-        var token = req.cookies.token;
-        var result = jwt.verify(token, 'token')
-        CheckOut.find({ name: 123 }).populate('account').then((data) => console.log(data)).catch()
-        res.render('info-payment')
+        // let token = req.cookies.token;
+        // let result = jwt.verify(token, 'token')
+        let authen = req.session.userid
+        let cart
+        let date = moment().format('mm:HH DD/MM/YYYY')
+        Orders.find({ account: authen })
+            .sort({ createdAt: 'desc' })
+            .lean()
+            .then(orders => {
+                orders.forEach((order) => {
+                    cart = new Cart(order.cart)
+                    order.items = cart.generateArray();
+                    order.totalPrice = cart.totalPrice
+                    order.createdAt = date
+                })
+                res.render('info-payment', { order: orders, date: date })
+            })
+
     }
 }
 

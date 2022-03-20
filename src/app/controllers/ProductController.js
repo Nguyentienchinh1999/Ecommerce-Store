@@ -35,13 +35,22 @@ class ProductController {
 
     // POST product
     store(req, res, next) {
-        req.body.image = req.file.path.split(path.sep).slice(2).join('/')
-        const product = new Product(req.body)
-        product.save()
-            .then(() =>
-                res.redirect('/admin')
-            )
-            .catch(next)
+        if (!req.files || Object.keys(req.files).length === 0) {
+            const product = new Product(req.body)
+            product.save()
+                .then(() =>
+                    res.redirect('/admin')
+                )
+                .catch(next)
+        } else {
+            req.body.image = req.file.path.split(path.sep).slice(2).join('/')
+            const product = new Product(req.body)
+            product.save()
+                .then(() =>
+                    res.redirect('/admin')
+                )
+                .catch(next)
+        }
     }
 
     // GET     edit      /product/:id/edit
@@ -56,11 +65,6 @@ class ProductController {
                 }
                 ))
             .catch(next)
-
-        // Product.findById(req.params.id)
-        //     .lean()
-        //     .then(product => res.render('product/edit', { product }))
-        //     .catch(next)
     }
 
     // PUT  /product/:id

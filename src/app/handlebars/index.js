@@ -1,9 +1,10 @@
 const handlebars = require('express-handlebars')
 const Handlebars = require('handlebars');
-var hbs = handlebars.create()
+
 Handlebars.registerHelper('iff', function (arg1, arg2, options) {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
+
 function handlebar(app) {
 
     app.engine('hbs', handlebars({

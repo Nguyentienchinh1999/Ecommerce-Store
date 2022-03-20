@@ -18,10 +18,14 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/cart"><i class="glyphicon glyphicon-shopping-cart"></i>Shoping cart <span
-                                        class="badge">{{session.cart.totalQty}}</span></a></li>
+                            {{#if cart}}
+                            <li><a href="/cart"><i class="glyphicon glyphicon-shopping-cart"></i>Shoping cart<span
+                                        class="badge">{{totalQty}}</span></a>
+                            </li>
+                            {{else}}
+                            <li><a href="">123</a></li>
+                            {{/if}}
                             {{#if account}}
-
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                     aria-haspopup="true" aria-expanded="false"> Account {{username}}
@@ -40,10 +44,12 @@
                                     <li><a href="/category/create">Thêm danh mục sản phẩm</a></li>
                                     <li><a href="/admin">Quản lý sản phẩm</a></li>
                                     <li><a href="/admin/category">Quản lý danh mục sản phẩm</a></li>
+                                    <li><a href="/info-payment">Thông tin đơn hàng</a></li>
                                     <li><a id="btn-logout" href="/logout">Đăng xuất</a></li>
                                 </ul>
                                 {{else}}
                                 <ul class="dropdown-menu">
+                                    <li><a href="/info-payment">Thông tin đơn hàng</a></li>
                                     <li><a href="/logout">Đăng xuất</a></li>
                                 </ul>
                                 {{/iff}}
@@ -111,8 +117,6 @@
                             {{/each}}
                         </ul>
                     </li>
-                    <li><a href="/cart">Cart</a></li>
-                    <li><a href="/check-out">Checkout</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>

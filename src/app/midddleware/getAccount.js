@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 
 
 module.exports = function getAccount(req, res, next) {
-    var token = req.cookies.token;
-
-    if (token) {
-        var result = jwt.verify(token, 'token')
-        Account.findOne({ _id: result }).then(account => {
+    // var token = req.cookies.token;
+    let authen = req.session.userid
+    if (authen) {
+        // var result = jwt.verify(token, 'token')
+        Account.findOne({ _id: authen }).then(account => {
             res.locals.account = account
             res.locals.username = account.username
             res.locals.role = account.role

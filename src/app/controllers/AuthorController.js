@@ -1,10 +1,11 @@
 const Product = require('../models/Product')
 const Category = require('../models/Category')
+const moment = require('moment-timezone');
 class AdminController {
     // GET 
     admin(req, res, next) {
         let productQuery = Product.find({}).lean()
-
+        let date = moment().format('mm:HH DD/MM/YYYY')
         if (req.query.hasOwnProperty('_sort')) {
             productQuery = productQuery.sort({
                 [req.query.column]: req.query.type
@@ -15,8 +16,8 @@ class AdminController {
             .then(([product, deletedCount]) =>
                 res.render('admin/admin-product', {
                     deletedCount,
-                    product
-                }
+                    product,
+                },
                 ))
             .catch(next)
 

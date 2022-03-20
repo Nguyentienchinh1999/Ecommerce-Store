@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router()
-const AdminController = require('../app/controllers/AdminController')
-
-
-router.get('/', AdminController.admin)
-router.get('/trash', AdminController.trash)
-router.get('/category', AdminController.category)
+const AuthorController = require('../app/controllers/AuthorController')
+router.get('/', AuthorController.admin)
+router.get('/trash', AuthorController.trash)
+router.get('/category', AuthorController.category)
 
 
 module.exports = router

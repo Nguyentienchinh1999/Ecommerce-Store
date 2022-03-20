@@ -11,12 +11,15 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const SortMidddleware = require('./app/midddleware/SortMidddleware')
-
+const getCategory = require('./app/midddleware/GetCategory')
+const getTotalCart = require('./app/midddleware/GetTotalCart')
 //  override method PUT or DELETE
 app.use(methodOverride('_method'));
 
 // custom Middleware
 app.use(SortMidddleware)
+app.use(getCategory)
+
 
 app.use(express.static(path.join(__dirname, 'public')))
 handlebars(app)
